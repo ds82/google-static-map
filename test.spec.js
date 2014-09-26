@@ -66,7 +66,7 @@ describe('google-static-map', function() {
         testAddress,
         map.config.zoom,
         map.config.resolution,
-        jasmine.any( Function ),
+        false,
         false,
         map.config.mapType,
         map.config.markers,

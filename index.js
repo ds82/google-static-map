@@ -90,7 +90,7 @@ var GoogleStaticMap = function( consoleKey, opts ) {
     this.values.last = this.values.url = gm.staticMap( this.config.address,
       this.config.zoom,
       this.config.resolution,
-      function(){},
+      false,
       false,
       this.config.mapType,
       this.config.markers,
