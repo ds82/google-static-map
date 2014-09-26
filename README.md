@@ -13,6 +13,9 @@ npm install google-static-map
 ```
 
 ## usage
+
+### simple
+
 ```javascript
 var fs = require('fs');
 var gm = require('google-static-map').set('google-console-api-key');
@@ -20,6 +23,47 @@ var gm = require('google-static-map').set('google-console-api-key');
 var stream = gm().address('Apple Store, 5th Avenue, New York').staticMap().done();
 stream.pipe(fs.createWriteStream('test.png'));
 ```
+
+### advanced
+```javascript
+var fs = require('fs');
+var gm = require('google-static-map').set('google-console-api-key');
+
+var stream = gm()
+  .zoom( 5 )
+  .resolution( '600x600' )
+  .maptype( 'roadmap' )
+  .address('Apple Store, 5th Avenue, New York')
+  .staticMap()
+  .done();
+
+stream.pipe(fs.createWriteStream('test.png'));
+```
+
+### with gulp (and json config file)
+
+```
+var source   = require('vinyl-source-stream');
+var gm       = require('google-static-map');
+var jsonedit = require('gulp-json-editor');
+
+
+gulp.task('google-static-maps', function() {
+  return gulp.src('config.json')
+    .pipe(jsonedit(function( json ) {
+      list.forEach(function( entry ) {
+        gm()
+          .address( entry.address )
+          .staticMap()
+          .done()
+          .pipe( source( entry.filename ))
+          .pipe( gulp.dest( entry.path ));
+      });
+      return json;
+    }));
+});
+```
+
 
 ## tests
 ```
