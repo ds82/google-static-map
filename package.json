@@ -1,6 +1,6 @@
 {
   "name": "google-static-map",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simplest way to get static images of address/location/search from google maps",
   "author": {
     "name": "Dennis Saenger",
