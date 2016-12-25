@@ -30,6 +30,7 @@ var GoogleStaticMap = function( consoleKey, opts ) {
     'label': '',
     'shadow': 'false'
   }];
+  this.useDefaultMarkers = true;
 
   this.config.paths = [];
 
@@ -56,6 +57,7 @@ var GoogleStaticMap = function( consoleKey, opts ) {
   };
 
   this.markers = function( markers ) {
+    this.useDefaultMarkers = false;
     return genericConfigHandler( 'markers', markers );
   };
 
@@ -72,7 +74,7 @@ var GoogleStaticMap = function( consoleKey, opts ) {
   };
 
   this.address = function( address ) {
-    if ( address ) {
+    if ( address && this.useDefaultMarkers ) {
       this.config.markers[0].location = address;
     }
     return genericConfigHandler( 'address', address );
