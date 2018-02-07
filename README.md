@@ -32,7 +32,7 @@ var gm = require('google-static-map').set('google-console-api-key');
 var stream = gm()
   .zoom( 5 )
   .resolution( '600x600' )
-  .maptype( 'roadmap' )
+  .mapType( 'roadmap' )
   .address('Apple Store, 5th Avenue, New York')
   .staticMap()
   .done();
